@@ -2,7 +2,7 @@
   "name": "react-form-lifecycle",
   "main": "index.js",
   "version": "1.0.0",
-  "description": "FormLifecycle state react wrapper",
+  "description": "Effortless forms, no payload. Render-prop wrapper for npm.im/form-lifecycle",
   "license": "MIT",
   "repository": "ajoslin/react-form-lifecycle",
   "author": {

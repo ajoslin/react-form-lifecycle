@@ -1,6 +1,6 @@
 # react-form-lifecycle [![Build Status](https://travis-ci.org/ajoslin/react-form-lifecycle.svg?branch=master)](https://travis-ci.org/ajoslin/react-form-lifecycle)
 
-> FormLifecycle state react wrapper
+> Effortless forms, no payload. Render-prop wrapper for [FormLifecycle](https://npm.im/form-lifecycle).
 
 
 ## Install
