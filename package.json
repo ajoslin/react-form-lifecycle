@@ -1,7 +1,7 @@
 {
   "name": "react-form-lifecycle",
   "main": "index.js",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "FormLifecycle state react wrapper",
   "license": "MIT",
   "repository": "ajoslin/react-form-lifecycle",
