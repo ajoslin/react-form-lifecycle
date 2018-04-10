@@ -36,6 +36,7 @@ function renderForm () {
           .then(lifecycle.success, lifecycle.error)
       }
     }}>
+      {form.error && <p>Looks like there was a submission error: {form.error}</p>}
       {errors.email && !form.pristine && <p>{errors.email.message}</p>}
       <input value={form.fields.email} type='email' onChange={e => lifecycle.edit({ email: e.target.value })} />
 
