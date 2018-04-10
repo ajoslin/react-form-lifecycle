@@ -1,0 +1,34 @@
+{
+  "name": "react-form-lifecycle",
+  "main": "index.js",
+  "version": "0.0.0",
+  "description": "FormLifecycle state react wrapper",
+  "license": "MIT",
+  "repository": "ajoslin/react-form-lifecycle",
+  "author": {
+    "name": "Andrew Joslin",
+    "email": "andrewtjoslin@gmail.com",
+    "url": "ajoslin.com"
+  },
+  "scripts": {
+    "test": "standard && tape test.js"
+  },
+  "keywords": [
+    "react",
+    "form-lifecycle",
+    "state"
+  ],
+  "devDependencies": {
+    "standard": "^7.0.0",
+    "tape": "^4.0.0"
+  },
+  "files": [
+    "index.js",
+    "test.js"
+  ],
+  "dependencies": {
+    "form-lifecycle": "^1.2.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.1"
+  }
+}
