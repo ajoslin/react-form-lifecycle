@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "standard",
+    "standard-react"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "jest"
+  ],
+  "env": {
+    "jest/globals": true
+  },
+  "rules": {
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "space-before-function-paren": [
+      "error",
+      "always"
+    ],
+    "no-irregular-whitespace": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/prop-types": 0,
+    "react/no-unused-prop-types": 0,
+    "import/no-webpack-loader-syntax": 0,
+    "react/no-unknown-property": 0,
+    "comma-dangle": [
+      "error",
+      "only-multiline"
+    ]
+  }
+}

@@ -18,7 +18,9 @@ ReactFormLifecycle.propTypes = {
   getErrors: PropTypes.func
 }
 ReactFormLifecycle.defaultProps = {
-  getErrors: function () { return {} }
+  getErrors: function () {
+    return {}
+  }
 }
 module.exports = ReactFormLifecycle
 
@@ -31,7 +33,10 @@ function ReactFormLifecycle (props) {
   this.state.errors = filterErrors(props.getErrors(this.state.form))
 }
 
-ReactFormLifecycle.prototype.runLifecycle = function runLifecycle (methodName, arg) {
+ReactFormLifecycle.prototype.runLifecycle = function runLifecycle (
+  methodName,
+  arg
+) {
   var newForm = FormLifecycle[methodName](this.state.form, arg)
   this.setState({
     form: newForm,
@@ -46,11 +51,21 @@ ReactFormLifecycle.prototype.render = function render () {
     form: this.state.form,
     errors: this.state.errors,
     lifecycle: {
-      reset: function (arg) { return self.runLifecycle('reset', arg) },
-      edit: function (arg) { return self.runLifecycle('edit', arg) },
-      submit: function (arg) { return self.runLifecycle('submit', arg) },
-      error: function (arg) { return self.runLifecycle('error', arg) },
-      successs: function (arg) { return self.runLifecycle('successs', arg) }
+      reset: function (arg) {
+        return self.runLifecycle('reset', arg)
+      },
+      edit: function (arg) {
+        return self.runLifecycle('edit', arg)
+      },
+      submit: function (arg) {
+        return self.runLifecycle('submit', arg)
+      },
+      error: function (arg) {
+        return self.runLifecycle('error', arg)
+      },
+      successs: function (arg) {
+        return self.runLifecycle('successs', arg)
+      }
     }
   })
 }

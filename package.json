@@ -11,7 +11,10 @@
     "url": "ajoslin.com"
   },
   "scripts": {
-    "test": "standard && tape test.js"
+    "test": "npm -s run format && npm -s run lint && npm -s run jest",
+    "format": "prettier-eslint --write '*.js'",
+    "lint": "eslint --fix  '*.js'",
+    "jest": "jest"
   },
   "keywords": [
     "react",
@@ -19,12 +22,27 @@
     "state"
   ],
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-jest": "^22.4.3",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-config-standard-react": "^6.0.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-jest": "^21.15.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-react": "^7.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "jest": "^22.4.3",
+    "prettier-eslint-cli": "^4.7.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
+    "react-dom": "^16.3.1",
     "react-hyperscript": "^3.2.0",
     "react-testing-library": "^2.1.0",
-    "standard": "^7.0.0",
-    "tape": "^4.0.0"
+    "standard": "^7.0.0"
   },
   "dependencies": {
     "form-lifecycle": "^1.2.0"
