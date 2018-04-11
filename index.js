@@ -37,6 +37,7 @@ ReactFormLifecycle.prototype.runLifecycle = function runLifecycle (methodName, a
     form: newForm,
     errors: filterErrors(this.props.getErrors(newForm))
   })
+  return newForm
 }
 
 ReactFormLifecycle.prototype.render = function render () {
@@ -44,11 +45,11 @@ ReactFormLifecycle.prototype.render = function render () {
     form: this.state.form,
     errors: this.state.errors,
     lifecycle: {
-      reset: arg => this.runLifecycle('reset', arg),
-      edit: arg => this.runLifecycle('edit', arg),
-      submit: arg => this.runLifecycle('submit', arg),
-      error: arg => this.runLifecycle('error', arg),
-      success: arg => this.runLifecycle('success', arg)
+      reset: function (arg) { return this.runLifecycle('reset', arg) },
+      edit: function (arg) { return this.runLifecycle('edit', arg) },
+      submit: function (arg) { return this.runLifecycle('submit', arg) },
+      error: function (arg) { return this.runLifecycle('error', arg) },
+      successs: function (arg) { return this.runLifecycle('successs', arg) }
     }
   })
 }
