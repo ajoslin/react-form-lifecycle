@@ -4,24 +4,11 @@ var FormLifecycle = require('form-lifecycle')
 var React = require('react')
 var PropTypes = require('prop-types')
 
-function filterErrors (errors) {
-  // Filter out falsy errors like {email: null} from the object.
-  return Object.keys(errors || {}).reduce((acc, key) => {
-    if (errors[key]) acc[key] = errors[key]
-    return acc
-  }, {})
-}
-
 ReactFormLifecycle.propTypes = {
   formDefaults: PropTypes.object,
-  render: PropTypes.func.isRequired,
-  getErrors: PropTypes.func
+  render: PropTypes.func.isRequired
 }
-ReactFormLifecycle.defaultProps = {
-  getErrors: function () {
-    return {}
-  }
-}
+
 module.exports = ReactFormLifecycle
 
 ReactFormLifecycle.prototype = Object.create(React.Component.prototype)
@@ -30,7 +17,6 @@ function ReactFormLifecycle (props) {
   this.state = {
     form: FormLifecycle.create(props.formDefaults)
   }
-  this.state.errors = filterErrors(props.getErrors(this.state.form))
 }
 
 ReactFormLifecycle.prototype.runLifecycle = function runLifecycle (
@@ -39,8 +25,7 @@ ReactFormLifecycle.prototype.runLifecycle = function runLifecycle (
 ) {
   var newForm = FormLifecycle[methodName](this.state.form, arg)
   this.setState({
-    form: newForm,
-    errors: filterErrors(this.props.getErrors(newForm))
+    form: newForm
   })
   return newForm
 }

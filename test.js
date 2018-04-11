@@ -1,5 +1,6 @@
 var React = require('react')
 var { render, cleanup, Simulate, wait } = require('react-testing-library')
+var filterBoolean = require('boolean-filter-obj')
 var FormLifecycle = require('./')
 
 function runApiCall () {
@@ -9,44 +10,46 @@ function runApiCall () {
 }
 
 function getFormErrors (form) {
-  return {
+  return filterBoolean({
     email: !form.fields.email ? new Error('please provide email') : null
-  }
+  })
 }
 
 function getFormEl () {
   return (
     <FormLifecycle
-      getErrors={getFormErrors}
       formDefaults={{ fields: { email: 'default@email.com' } }}
-      render={({ form, lifecycle, errors }) => (
-        <form
-          data-testid='form'
-          onSubmit={e => {
-            e.preventDefault()
-            if (Object.keys(errors).length) {
-              return lifecycle.error()
-            }
-            lifecycle.submit()
-            runApiCall().then(lifecycle.success, lifecycle.error)
-          }}
-        >
-          {form.pending && <div data-testid='loading'>Loading...</div>}
-          {form.error && (
-            <div data-testid='form-error'>{form.error.message}</div>
-          )}
-          {errors.email &&
-            !form.pristine && (
-            <p data-testid='email-error'>{errors.email.message}</p>
-          )}
-          <input
-            type='email'
-            data-testid='email-input'
-            value={form.fields.email}
-            onChange={e => lifecycle.edit({ email: e.target.value })}
-          />
-        </form>
-      )}
+      render={({ form, lifecycle }) => {
+        var errors = getFormErrors(form)
+        return (
+          <form
+            data-testid='form'
+            onSubmit={e => {
+              e.preventDefault()
+              if (Object.keys(errors).length) {
+                return lifecycle.error()
+              }
+              lifecycle.submit()
+              runApiCall().then(lifecycle.success, lifecycle.error)
+            }}
+          >
+            {form.pending && <div data-testid='loading'>Loading...</div>}
+            {form.error && (
+              <div data-testid='form-error'>{form.error.message}</div>
+            )}
+            {errors.email &&
+              !form.pristine && (
+              <p data-testid='email-error'>{errors.email.message}</p>
+            )}
+            <input
+              type='email'
+              data-testid='email-input'
+              value={form.fields.email}
+              onChange={e => lifecycle.edit({ email: e.target.value })}
+            />
+          </form>
+        )
+      }}
     />
   )
 }
