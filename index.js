@@ -6,6 +6,7 @@ var PropTypes = require('prop-types')
 
 ReactFormLifecycle.propTypes = {
   formDefaults: PropTypes.object,
+  onChange: PropTypes.func,
   render: PropTypes.func.isRequired
 }
 
@@ -27,6 +28,9 @@ ReactFormLifecycle.prototype.runLifecycle = function runLifecycle (
   this.setState({
     form: newForm
   })
+  if (this.props.onChange) {
+    this.props.onChange(newForm)
+  }
   return newForm
 }
 

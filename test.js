@@ -15,9 +15,10 @@ function getFormErrors (form) {
   })
 }
 
-function getFormEl () {
+function getFormEl ({ onChange } = {}) {
   return (
     <FormLifecycle
+      onChange={onChange}
       formDefaults={{ fields: { email: 'default@email.com' } }}
       render={({ form, lifecycle }) => {
         var errors = getFormErrors(form)
@@ -82,4 +83,18 @@ test('typing', () => {
     expect(() => getByTestId('loading')).toThrow()
     expect(getByTestId('form-error').innerHTML).toEqual('form error')
   })
+})
+
+test('onChange', () => {
+  var changedForm
+  function onChange (form) {
+    changedForm = form
+  }
+  var { getByTestId } = render(getFormEl({ onChange }))
+  expect(changedForm).toBeUndefined()
+  var input = getByTestId('email-input')
+
+  Simulate.change(input, { target: { value: 'changed' } })
+  expect(changedForm).toBeTruthy()
+  expect(changedForm.fields.email).toBe('changed')
 })
