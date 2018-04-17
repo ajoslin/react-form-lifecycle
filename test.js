@@ -86,9 +86,10 @@ test('typing', () => {
 })
 
 test('onChange', () => {
-  var changedForm
-  function onChange (form) {
+  var changedForm, oldForm
+  function onChange (form, prevForm) {
     changedForm = form
+    oldForm = prevForm
   }
   var { getByTestId } = render(getFormEl({ onChange }))
   expect(changedForm).toBeUndefined()
@@ -97,4 +98,8 @@ test('onChange', () => {
   Simulate.change(input, { target: { value: 'changed' } })
   expect(changedForm).toBeTruthy()
   expect(changedForm.fields.email).toBe('changed')
+
+  Simulate.change(input, { target: { value: 'changed again' } })
+  expect(changedForm.fields.email).toBe('changed again')
+  expect(oldForm.fields.email).toBe('changed')
 })

@@ -25,12 +25,15 @@ ReactFormLifecycle.prototype.runLifecycle = function runLifecycle (
   arg
 ) {
   var newForm = FormLifecycle[methodName](this.state.form, arg)
+
+  if (this.props.onChange) {
+    this.props.onChange(newForm, this.state.form)
+  }
+
   this.setState({
     form: newForm
   })
-  if (this.props.onChange) {
-    this.props.onChange(newForm)
-  }
+
   return newForm
 }
 

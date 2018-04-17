@@ -14,7 +14,7 @@ $ npm install --save react-form-lifecycle
 
 Recommended way of doing forms:
 
-```js
+```jsx
 var FormLifecycle = require('react-form-lifecycle')
 var filterBoolean = require('boolean-filter-obj')
 var isEmail = require('is-email-maybe')
@@ -49,12 +49,41 @@ function getValidationErrors (form) {
       : null
   })
 }
-
 ```
 
 ## API
 
-Coming soon.
+## API
+
+## `<Stepper>`
+
+#### Props
+
+#### onChange
+
+> `function (form, prevForm)` | optional
+
+Called whenever the form is changed via [`lifecycle` methods](https://github.com/ajoslin/form-lifecycle#lifecyclecreatedata---form). Receives the newForm and prevForm as parametersj.
+
+#### formDefaults
+
+> `object` | optional
+
+These values will be passed to the new [FormLifecycle object)(https://github.com/ajoslin/form-lifecycle) that is created when the component is instantiated.
+
+Example: `<FormLifecycle formDefaults={{ fields: {rememberMe: true} }} />`
+
+#### render
+
+> `function()` | *required*
+
+`<FormLifecycle render={({ form, lifecycle }) => <div />} />`
+
+The `render` prop function is called with an object containing the following:
+
+- `form`: An instance of [FormLifecycle](https://github.com/ajoslin/form-lifecycle#api).
+- `lifecycle`: An object containing all [FormLifecycle methods](https://github.com/ajoslin/form-lifecycle#api). When called, the form will be edited and re-rendered.
+  - Example: `lifecycle.edit({ email: 'test@email.com' })`.
 
 ## License
 
