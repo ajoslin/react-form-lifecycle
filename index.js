@@ -56,7 +56,7 @@ ReactFormLifecycle.prototype.render = function render () {
         return self.runLifecycle('error', arg)
       },
       success: function (arg) {
-        return self.runLifecycle('successs', arg)
+        return self.runLifecycle('success', arg)
       }
     }
   })
