@@ -53,9 +53,7 @@ function getValidationErrors (form) {
 
 ## API
 
-## API
-
-## `<Stepper>`
+## `<FormLifecycle>`
 
 #### Props
 
