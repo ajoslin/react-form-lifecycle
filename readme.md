@@ -77,6 +77,9 @@ Example: `<FormLifecycle formDefaults={{ fields: {rememberMe: true} }} />`
 
 `<FormLifecycle render={({ form, lifecycle }) => <div />} />`
 
+Also supports child render function:
+`<FormLifecycle>{({ form, lifecycle }) => <div />}}</FormLifecycle>
+
 The `render` prop function is called with an object containing the following:
 
 - `form`: An instance of [FormLifecycle](https://github.com/ajoslin/form-lifecycle#api).
