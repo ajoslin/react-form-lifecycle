@@ -7,7 +7,7 @@ var PropTypes = require('prop-types')
 ReactFormLifecycle.propTypes = {
   formDefaults: PropTypes.object,
   onChange: PropTypes.func,
-  render: PropTypes.func.isRequired
+  render: PropTypes.func
 }
 
 module.exports = ReactFormLifecycle
@@ -39,7 +39,15 @@ ReactFormLifecycle.prototype.runLifecycle = function runLifecycle (
 
 ReactFormLifecycle.prototype.render = function render () {
   var self = this
-  return this.props.render({
+  var render = this.props.render || [].concat(this.props.children)[0]
+
+  if (typeof render !== 'function') {
+    throw new TypeError(
+      'react-form-lifecycle: props.render or child render func required!'
+    )
+  }
+
+  return render({
     form: this.state.form,
     errors: this.state.errors,
     lifecycle: {
