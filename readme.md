@@ -24,7 +24,7 @@ function renderForm () {
     var validationErrors = getValidationErrors(form)
     return <form onSubmit={e => {
       e.preventDefault()
-      if (Object.keys(errors).length) {
+      if (Object.keys(validationErrors).length) {
         return lifecycle.error()
       } else {
         lifecycle.submit()
@@ -61,13 +61,13 @@ function getValidationErrors (form) {
 
 > `function (form, prevForm)` | optional
 
-Called whenever the form is changed via [`lifecycle` methods](https://github.com/ajoslin/form-lifecycle#lifecyclecreatedata---form). Receives the newForm and prevForm as parametersj.
+Called whenever the form is changed via [`lifecycle` methods](https://github.com/ajoslin/form-lifecycle#lifecyclecreatedata---form). Receives the newForm and prevForm as parameters.
 
 #### formDefaults
 
 > `object` | optional
 
-These values will be passed to the new [FormLifecycle object)(https://github.com/ajoslin/form-lifecycle) that is created when the component is instantiated.
+These values will be passed to the new [FormLifecycle object](https://github.com/ajoslin/form-lifecycle) that is created when the component is instantiated.
 
 Example: `<FormLifecycle formDefaults={{ fields: {rememberMe: true} }} />`
 
@@ -78,7 +78,7 @@ Example: `<FormLifecycle formDefaults={{ fields: {rememberMe: true} }} />`
 `<FormLifecycle render={({ form, lifecycle }) => <div />} />`
 
 Also supports child render function:
-`<FormLifecycle>{({ form, lifecycle }) => <div />}}</FormLifecycle>
+`<FormLifecycle>{({ form, lifecycle }) => <div />}}</FormLifecycle>`
 
 The `render` prop function is called with an object containing the following:
 
