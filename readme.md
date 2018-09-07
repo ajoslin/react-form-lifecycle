@@ -87,11 +87,11 @@ Called whenever `lifecycle.submit` is called
 
 Called whenever `lifecycle.error` is called
 
-#### onSubmit
+#### onSuccess
 
 > `function (form, prevForm)` | optional
 
-Called whenever `lifecycle.submit` is called
+Called whenever `lifecycle.success` is called
 
 #### formDefaults
 
