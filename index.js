@@ -7,6 +7,11 @@ var PropTypes = require('prop-types')
 ReactFormLifecycle.propTypes = {
   formDefaults: PropTypes.object,
   onChange: PropTypes.func,
+  onReset: PropTypes.func,
+  onEdit: PropTypes.func,
+  onSubmit: PropTypes.func,
+  onError: PropTypes.func,
+  onSucces: PropTypes.func,
   render: PropTypes.func
 }
 
@@ -30,6 +35,11 @@ ReactFormLifecycle.prototype.runLifecycle = function runLifecycle (
     this.props.onChange(newForm, this.state.form)
   }
 
+  const fn = this.props['on' + methodName[0].toUpperCase() + methodName.slice(1)]
+  if (fn) {
+    fn(newForm, this.state.form)
+  }
+
   this.setState({
     form: newForm
   })
@@ -40,12 +50,6 @@ ReactFormLifecycle.prototype.runLifecycle = function runLifecycle (
 ReactFormLifecycle.prototype.render = function render () {
   var self = this
   var render = this.props.render || [].concat(this.props.children)[0]
-
-  if (typeof render !== 'function') {
-    throw new TypeError(
-      'react-form-lifecycle: props.render or child render func required!'
-    )
-  }
 
   return render({
     form: this.state.form,

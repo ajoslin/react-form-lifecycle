@@ -63,6 +63,36 @@ function getValidationErrors (form) {
 
 Called whenever the form is changed via [`lifecycle` methods](https://github.com/ajoslin/form-lifecycle#lifecyclecreatedata---form). Receives the newForm and prevForm as parameters.
 
+#### onReset
+
+> `function (form, prevForm)` | optional
+
+Called whenever `lifecycle.reset` is called
+
+#### onEdit
+
+> `function (form, prevForm)` | optional
+
+Called whenever `lifecycle.edit` is called
+
+#### onSubmit
+
+> `function (form, prevForm)` | optional
+
+Called whenever `lifecycle.submit` is called
+
+#### onError
+
+> `function (form, prevForm)` | optional
+
+Called whenever `lifecycle.error` is called
+
+#### onSubmit
+
+> `function (form, prevForm)` | optional
+
+Called whenever `lifecycle.submit` is called
+
 #### formDefaults
 
 > `object` | optional
